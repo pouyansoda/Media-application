@@ -3,7 +3,8 @@
 @section('content')
     <h1>Edit user</h1>
     <div class="col-sm-3">
-        <img src="{{$user->photo ? $user->photo->file : 'http://placehold.it/200x200'}}" alt="" class="img-responsive img-rounded">
+        <img src="{{$user->photo ? $user->photo->file : 'http://placehold.it/200x200'}}" alt=""
+             class="img-responsive img-rounded">
     </div>
     <div class="col-sm-9">
         {!! Form::model($user, ['method'=>'PATCH', 'action' => ['AdminUsersController@update', $user->id], 'files'=> true]) !!}
@@ -50,7 +51,12 @@
             <span class="text-danger">{{ $errors->first('photo_id') }}</span>
         @endif
         <div class="form-group">
-            {!! Form::submit('Create User', ['class'=>'btn btn-primary']) !!}
+            {!! Form::submit('Create User', ['class'=>'btn btn-primary float-left']) !!}
+        </div>
+        {!! Form::close() !!}
+        {!! Form::open(['method'=>'DELETE', 'action'=> ['AdminUsersController@destroy', $user->id],'class'=>'float-right']) !!}
+        <div class="form-group">
+            {!! Form::submit('Delete user', ['class'=>'btn btn-danger']) !!}
         </div>
         {!! Form::close() !!}
     </div>

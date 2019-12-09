@@ -1,6 +1,18 @@
 @extends('layouts.admin')
 
 @section('content')
+    @if ($message = Session::get('delete'))
+        <div class="alert alert-danger alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+        </div>
+    @endif
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+        </div>
+    @endif
     <h1>Users</h1>
     <table class="table table-striped table-dark table-bordered">
         <thead>
@@ -22,7 +34,8 @@
                     <th scope="row">{{ $user->id }}</th>
                     <td><a href="{{ route('users.edit', $user->id) }}">{{ $user->name }}</a></td>
                     <td>
-                        <img height="100" width="100" src="{{$user->photo ? $user->photo->file : 'http://placehold.it/100x100'}}" alt=""
+                        <img height="100" width="100"
+                             src="{{$user->photo ? $user->photo->file : 'http://placehold.it/100x100'}}" alt=""
                              class="img-responsive img-rounded">
                     </td>
                     <td>{{ $user->email }}</td>
