@@ -12,7 +12,7 @@
     @endif
     <div class="form-group">
         {!! Form::label('category_id', 'Category:') !!}
-        {!! Form::select('category_id',  ['0' => 'PHP', '1' => 'Javascript'],null, ['class'=>'form-control']) !!}
+        {!! Form::select('category_id',  [''=> 'Choose Options'] + $category,null, ['class'=>'form-control']) !!}
     </div>
     @if($errors->has('category_id'))
         <span class="text-danger">{{ $errors->first('category_id') }}</span>
